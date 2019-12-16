@@ -23,7 +23,8 @@ export class GraphDisplay extends Component {
   generateTimeArray = () => {
     let samples = this.props.workoutData.samples
     let labels = samples.reduce((endValue, sample) => {
-      endValue.push(sample.millisecondOffset)
+      let second = sample.millisecondOffset / 1000
+      endValue.push(second)
       return endValue
     }, [])
     return labels
@@ -41,9 +42,9 @@ export class GraphDisplay extends Component {
 
   render = () => {
     return (
-      <section className='graph'>
-        <h2>graph</h2>
-        <article>
+      <section >
+        <h2>Power Output Over Time (seconds)</h2>
+        <article className='graph'>
         <Line
           options={{
             responsive: true
