@@ -6,8 +6,6 @@ const API_KEY =`${process.env.REACT_APP_API_KEY}`
 
 
 
-let routes 
-
 export class MapDisplay extends Component {
 
  
