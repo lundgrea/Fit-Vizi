@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import './GraphDisplay.css';
 
 export class GraphDisplay extends Component {
@@ -7,7 +7,7 @@ export class GraphDisplay extends Component {
     super(props)
     this.state = {
       chartData: {
-        labels: ["Power over Time"],
+        labels: this.generateTimeArray(),
         datasets: [
           {
             label: "Power",
@@ -16,7 +16,19 @@ export class GraphDisplay extends Component {
         ]
       }
     }
+
+
   }
+
+  generateTimeArray = () => {
+    let samples = this.props.workoutData.samples
+    let labels = samples.reduce((endValue, sample) => {
+      endValue.push(sample.millisecondOffset)
+      return endValue
+    }, [])
+    return labels
+  }
+
 
   generatePowerArray = () => {
     let samples = this.props.workoutData.samples
@@ -24,16 +36,15 @@ export class GraphDisplay extends Component {
       endValue.push(sample.values.power)
       return endValue
     }, [])
-  return data  
-}
+    return data
+  }
 
   render = () => {
-    console.log(this.state.chartData)
     return (
       <section className='graph'>
         <h2>graph</h2>
         <article>
-        <Bar
+        <Line
           options={{
             responsive: true
           }}
