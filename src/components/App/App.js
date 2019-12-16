@@ -12,8 +12,8 @@ export const App = () => {
       <header className="App-header">
      <h1>Fit Vizi</h1>
       </header>
-      {/* <MapDisplay workoutData={workoutData}/> */}
       <GraphDisplay workoutData={workoutData} />
+      <MapDisplay workoutData={workoutData}/>
     </div>
   );
 }

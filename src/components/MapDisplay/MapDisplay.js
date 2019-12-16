@@ -42,7 +42,7 @@ export class MapDisplay extends Component {
   render() {
     return (
       <div className='map'>
-        <h2>Map</h2>
+        <h2>Map of Travel Route</h2>
       <Map
         google={this.props.google}
         zoom={12}

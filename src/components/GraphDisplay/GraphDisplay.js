@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import './GraphDisplay.css';
 
 export class GraphDisplay extends Component {
@@ -7,16 +7,29 @@ export class GraphDisplay extends Component {
     super(props)
     this.state = {
       chartData: {
-        labels: ["Power over Time"],
+        labels: this.generateTimeArray(),
         datasets: [
           {
-            label: "Power",
+            label: "Power Output",
             data: this.generatePowerArray()
           }
         ]
       }
     }
+
+
   }
+
+  generateTimeArray = () => {
+    let samples = this.props.workoutData.samples
+    let labels = samples.reduce((endValue, sample) => {
+      let second = sample.millisecondOffset / 1000
+      endValue.push(second)
+      return endValue
+    }, [])
+    return labels
+  }
+
 
   generatePowerArray = () => {
     let samples = this.props.workoutData.samples
@@ -24,18 +37,31 @@ export class GraphDisplay extends Component {
       endValue.push(sample.values.power)
       return endValue
     }, [])
-  return data  
-}
+    return data
+  }
 
   render = () => {
-    console.log(this.state.chartData)
     return (
-      <section className='graph'>
-        <h2>graph</h2>
-        <article>
-        <Bar
+      <section >
+        <h2>Power Output Over Time (seconds)</h2>
+        <article className='graph'>
+        <Line
           options={{
-            responsive: true
+            responsive: true,
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Power Output'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time (seconds)'
+                }
+              }],
+            }
           }}
           data={this.state.chartData}
         />
