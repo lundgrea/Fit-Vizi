@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Polyline } from 'google-maps-react';
-import { workoutData } from '../../workout-data';
+// import './MapDisplay.css';
 
 const API_KEY =`${process.env.REACT_APP_API_KEY}`
 
 
 
-export class MapDisplay extends Component {
+export class MapDisplay extends Component { 
 
  
   displayPolyline = () => {
@@ -23,7 +23,7 @@ export class MapDisplay extends Component {
 
 
   generatePolylines = () => {
-    let samples = workoutData.samples
+    let samples = this.props.workoutData.samples
     let paths = samples.reduce((endValue, sample) => {
       if (sample.values.positionLat != undefined) {
         let object = {lat: '', lng: ''}
@@ -41,16 +41,17 @@ export class MapDisplay extends Component {
 
   render() {
     return (
-      <>
-        <Map
-          google={this.props.google}
-          zoom={15}
-          style={mapStyles}
-          initialCenter={{ lat: 40.01488, lng: -105.131}}
+      <div className='map'>
+        <h2>Map</h2>
+      <Map
+        google={this.props.google}
+        zoom={12}
+        style={mapStyles}
+        initialCenter={{ lat: 40.01488, lng: -105.131}}
         >
-          {this.displayPolyline()}
-        </Map>
-      </>
+        {this.displayPolyline()}
+      </Map>
+      </div>
     );
   } 
 }
@@ -61,6 +62,7 @@ export default GoogleApiWrapper({
 
 
 const mapStyles = {
-  width: '100%',
-  height: '100%',
+  width: '75%',
+  height: '75%',
+  // position: 'relative'
 };
