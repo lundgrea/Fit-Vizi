@@ -1,22 +1,61 @@
-import React from 'react'
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import React, { Component } from 'react'
+import { Map, GoogleApiWrapper, Polyline } from 'google-maps-react';
+import { workoutData } from '../../workout-data';
 
 const API_KEY =`${process.env.REACT_APP_API_KEY}`
 
-export const MapDisplay = (props) => {
+
+
+let routes 
+
+export class MapDisplay extends Component {
+
+ 
+  displayPolyline = () => {
+    let routes = this.generatePolylines()
+    return (
+      <Polyline
+        path={routes}
+        strokeColor="#DB3A34"
+        strokeOpacity={0.8}
+        strokeWeight={5} 
+      />
+    )
+  }
+
+
+  generatePolylines = () => {
+    let samples = workoutData.samples
+    let paths = samples.reduce((endValue, sample) => {
+      if (sample.values.positionLat != undefined) {
+        let object = {lat: '', lng: ''}
+        object.lat = sample.values.positionLat
+        object.lng = sample.values.positionLong
+        endValue.push(object)
+      return endValue
+      } else {
+      return endValue
+      }
+    }, [{lat: 40.01488, lng: -105.131}])
+    return paths
+  }
+
+
+  render() {
     return (
       <>
         <Map
-          google={props.google}
-          zoom={3}
+          google={this.props.google}
+          zoom={15}
           style={mapStyles}
-          initialCenter={{ lat: 47.444, lng: -122.176}}
-        />
-        <Marker position={{ lat: 48.00, lng: -122.00}} />
+          initialCenter={{ lat: 40.01488, lng: -105.131}}
+        >
+          {this.displayPolyline()}
+        </Map>
       </>
     );
-} 
-
+  } 
+}
 
 export default GoogleApiWrapper({
   apiKey: API_KEY
@@ -24,6 +63,6 @@ export default GoogleApiWrapper({
 
 
 const mapStyles = {
-  width: '40%',
-  height: '40%',
+  width: '100%',
+  height: '100%',
 };
