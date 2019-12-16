@@ -10,7 +10,7 @@ export class GraphDisplay extends Component {
         labels: this.generateTimeArray(),
         datasets: [
           {
-            label: "Power",
+            label: "Power Output",
             data: this.generatePowerArray()
           }
         ]
@@ -47,7 +47,21 @@ export class GraphDisplay extends Component {
         <article className='graph'>
         <Line
           options={{
-            responsive: true
+            responsive: true,
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Power Output'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time (seconds)'
+                }
+              }],
+            }
           }}
           data={this.state.chartData}
         />
