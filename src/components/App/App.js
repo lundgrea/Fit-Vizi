@@ -10,11 +10,11 @@ export class App extends Component {
   constructor() {
     super()
     this.state = {
-      topOneStartIndex: 0,
-      topFiveStartIndex: 0,
-      topTenStartIndex: 0, 
-      topFifteenStartIndex: 0, 
-      topTwentyStartIndex: 0
+      topOne: {},
+      topFive: {},
+      topTen: {}, 
+      topFifteen: {}, 
+      topTwenty: {},
     }
   }
 
@@ -29,11 +29,11 @@ export class App extends Component {
     let topFive = this.determineBest(five)
     let one = this.calculateMinutes(1)
     let topOne = this.determineBest(one)
-    this.setState({ topOneStartIndex: topOne})
-    this.setState({ topFiveStartIndex : topFive })
-    this.setState({ topTenStartIndex : topTen })
-    this.setState({ topFifteenStartIndex : topFifteen })
-    this.setState({ topTwentyStartIndex : topTwenty })
+    this.setState({ topOne: topOne})
+    this.setState({ topFive : topFive })
+    this.setState({ topTen : topTen })
+    this.setState({ topFifteen : topFifteen })
+    this.setState({ topTwenty : topTwenty })
   }
 
 
@@ -59,7 +59,8 @@ export class App extends Component {
          actualMax = Math.max(currentMax, actualMax)
       } 
     }
-  return startIndex
+  
+  return {startIndex: startIndex, averagePower: (actualMax/duration)}
   }
 
   calculateMinutes = (minutes) => {
