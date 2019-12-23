@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapDisplay from '../MapDisplay/MapDisplay';
 import GraphDisplay from '../GraphDisplay/GraphDisplay';
+import BestDisplay from '../BestDisplay/BestDisplay';
 import { workoutData } from '../../workout-data';
 import './App.css';
 
@@ -19,6 +20,10 @@ export class App extends Component {
   }
 
   componentDidMount = () => {
+    this.getTheBests()
+  }
+
+  getTheBests = () => {
     let twenty = this.calculateMinutes(20)
     let topTwenty = this.determineBest(twenty)
     let fifteen = this.calculateMinutes(15)
@@ -35,7 +40,6 @@ export class App extends Component {
     this.setState({ topFifteen : topFifteen })
     this.setState({ topTwenty : topTwenty })
   }
-
 
   determineBest = (duration) => {
     let currentMax = 0;
@@ -59,8 +63,9 @@ export class App extends Component {
          actualMax = Math.max(currentMax, actualMax)
       } 
     }
-  
-  return {startIndex: startIndex, averagePower: (actualMax/duration)}
+    let average = actualMax / duration
+    let shortenedAverage = average.toFixed(2)
+  return {startIndex: startIndex, averagePower: shortenedAverage}
   }
 
   calculateMinutes = (minutes) => {
@@ -74,6 +79,7 @@ export class App extends Component {
         <header className="App-header">
           <h1>Fit Vizi</h1>
         </header>
+        <BestDisplay data={this.state}/>
       <GraphDisplay workoutData={workoutData} />
       <MapDisplay workoutData={workoutData}/>
     </div>
