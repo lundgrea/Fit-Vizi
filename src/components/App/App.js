@@ -10,6 +10,7 @@ export class App extends Component {
   constructor() {
     super()
     this.state = {
+      topOneStartIndex: 0,
       topFiveStartIndex: 0,
       topTenStartIndex: 0, 
       topFifteenStartIndex: 0, 
@@ -26,6 +27,9 @@ export class App extends Component {
     let topTen = this.determineBest(ten)
     let five = this.calculateMinutes(5)
     let topFive = this.determineBest(five)
+    let one = this.calculateMinutes(1)
+    let topOne = this.determineBest(one)
+    this.setState({ topOneStartIndex: topOne})
     this.setState({ topFiveStartIndex : topFive })
     this.setState({ topTenStartIndex : topTen })
     this.setState({ topFifteenStartIndex : topFifteen })
@@ -33,7 +37,7 @@ export class App extends Component {
   }
 
 
- determineBest = (duration) => {
+  determineBest = (duration) => {
     let currentMax = 0;
     let samples = workoutData.samples;
     for (var i = 0; i < duration; i++) {
@@ -56,15 +60,12 @@ export class App extends Component {
       } 
     }
   return startIndex
-}
+  }
 
   calculateMinutes = (minutes) => {
     let secondsLength = minutes * 60
     return secondsLength
   }
-
-
-
 
   render() {
     return (
@@ -72,8 +73,8 @@ export class App extends Component {
         <header className="App-header">
           <h1>Fit Vizi</h1>
         </header>
-      {/* <GraphDisplay workoutData={workoutData} /> */}
-      {/* <MapDisplay workoutData={workoutData}/> */}
+      <GraphDisplay workoutData={workoutData} />
+      <MapDisplay workoutData={workoutData}/>
     </div>
   );
   }
