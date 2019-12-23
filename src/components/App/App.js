@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapDisplay from '../MapDisplay/MapDisplay';
 import GraphDisplay from '../GraphDisplay/GraphDisplay';
+import BestDisplay from '../BestDisplay/BestDisplay';
 import { workoutData } from '../../workout-data';
 import './App.css';
 
@@ -10,15 +11,19 @@ export class App extends Component {
   constructor() {
     super()
     this.state = {
-      topOneStartIndex: 0,
-      topFiveStartIndex: 0,
-      topTenStartIndex: 0, 
-      topFifteenStartIndex: 0, 
-      topTwentyStartIndex: 0
+      topOne: {},
+      topFive: {},
+      topTen: {}, 
+      topFifteen: {}, 
+      topTwenty: {},
     }
   }
 
   componentDidMount = () => {
+    this.getTheBests()
+  }
+
+  getTheBests = () => {
     let twenty = this.calculateMinutes(20)
     let topTwenty = this.determineBest(twenty)
     let fifteen = this.calculateMinutes(15)
@@ -29,13 +34,12 @@ export class App extends Component {
     let topFive = this.determineBest(five)
     let one = this.calculateMinutes(1)
     let topOne = this.determineBest(one)
-    this.setState({ topOneStartIndex: topOne})
-    this.setState({ topFiveStartIndex : topFive })
-    this.setState({ topTenStartIndex : topTen })
-    this.setState({ topFifteenStartIndex : topFifteen })
-    this.setState({ topTwentyStartIndex : topTwenty })
+    this.setState({ topOne: topOne})
+    this.setState({ topFive : topFive })
+    this.setState({ topTen : topTen })
+    this.setState({ topFifteen : topFifteen })
+    this.setState({ topTwenty : topTwenty })
   }
-
 
   determineBest = (duration) => {
     let currentMax = 0;
@@ -59,7 +63,9 @@ export class App extends Component {
          actualMax = Math.max(currentMax, actualMax)
       } 
     }
-  return startIndex
+    let average = actualMax / duration
+    let shortenedAverage = average.toFixed(2)
+  return {startIndex: startIndex, averagePower: shortenedAverage}
   }
 
   calculateMinutes = (minutes) => {
@@ -73,6 +79,7 @@ export class App extends Component {
         <header className="App-header">
           <h1>Fit Vizi</h1>
         </header>
+        <BestDisplay data={this.state}/>
       <GraphDisplay workoutData={workoutData} />
       <MapDisplay workoutData={workoutData}/>
     </div>
