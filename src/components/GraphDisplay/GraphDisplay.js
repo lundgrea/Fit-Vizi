@@ -47,6 +47,7 @@ export class GraphDisplay extends Component {
         <Line
           options={{
             'onClick' : function (e, item) {
+              console.log(item[0]._index)
               console.log(e);
               console.log(item)
             },
