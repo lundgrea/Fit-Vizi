@@ -16,9 +16,8 @@ export class GraphDisplay extends Component {
         ]
       }
     }
-
-
   }
+
 
   generateTimeArray = () => {
     let samples = this.props.workoutData.samples
@@ -47,6 +46,11 @@ export class GraphDisplay extends Component {
         <article className='graph'>
         <Line
           options={{
+            'onClick' : function (e, item) {
+              console.log(item[0]._index)
+              console.log(e);
+              console.log(item)
+            },
             responsive: true,
             scales: {
               yAxes: [{

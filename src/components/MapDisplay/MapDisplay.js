@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Polyline } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Polyline, Marker } from 'google-maps-react';
 
 const API_KEY =`${process.env.REACT_APP_API_KEY}`
 
@@ -22,7 +22,7 @@ export class MapDisplay extends Component {
   generatePolylines = () => {
     let samples = this.props.workoutData.samples
     let paths = samples.reduce((endValue, sample) => {
-      if (sample.values.positionLat != undefined) {
+      if (sample.values.positionLat !== undefined) {
         let object = {lat: '', lng: ''}
         object.lat = sample.values.positionLat
         object.lng = sample.values.positionLong
