@@ -92,9 +92,9 @@ export class App extends Component {
         <header className="App-header">
           <h1>Fit Vizi</h1>
         </header>
-        <BestDisplay data={this.state}/>
-      <GraphDisplay workoutData={workoutData} />
-      <MapDisplay workoutData={workoutData}/>
+        {/* <BestDisplay data={this.state}/> */}
+      {/* <GraphDisplay workoutData={workoutData} /> */}
+      {/* <MapDisplay workoutData={workoutData}/> */}
     </div>
   );
   }
