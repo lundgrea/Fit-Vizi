@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const BestDisplay = (props) => {
-  console.log(props)
   return (
     <>
       <h2>Best Average Power Outputs</h2>

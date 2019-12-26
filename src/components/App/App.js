@@ -88,8 +88,8 @@ export class App extends Component {
         <header className="App-header">
           <h1>Fit Vizi</h1>
         </header>
-        <BestDisplay topOne={this.state.topOne} topFive={this.state.topFive} topTen={this.state.topTen} topFifteen={this.state.topFifteen} topTwenty={this.state.topTwenty}/>
-      {/* <GraphDisplay workoutData={workoutData} /> */}
+        {this.state.cleanedData.length > 1 && <BestDisplay topOne={this.state.topOne} topFive={this.state.topFive} topTen={this.state.topTen} topFifteen={this.state.topFifteen} topTwenty={this.state.topTwenty}/>}
+        {this.state.cleanedData.length > 1 && <GraphDisplay workoutData={this.state.cleanedData} />}
       {/* <MapDisplay workoutData={workoutData}/> */}
     </div>
   );
