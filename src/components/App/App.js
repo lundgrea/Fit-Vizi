@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import MapDisplay from '../MapDisplay/MapDisplay';
 import GraphDisplay from '../GraphDisplay/GraphDisplay';
 import BestDisplay from '../BestDisplay/BestDisplay';
-import { fetchAllData } from '../../apiCalls/apiCalls';
+import { fetchAllWorkouts } from '../../apiCalls/apiCalls';
+import { cleanWorkoutResults } from '../../Util/dataCleaner'
 import './App.css';
 
 
@@ -24,17 +25,21 @@ export class App extends Component {
     }
   }
 
-  componentDidMount = () => {
-    this.getAllData()
+  componentDidMount = async () => {
+    try {
+      const data = await fetchAllWorkouts()
+      this.setState({ isLoading: false })
+      this.setState({ allData: data })
+      const cleanedData = await cleanWorkoutResults(data)
+      this.setState({ cleanedData} )
+    } catch {
+      this.setState({ error: 'Unable to get workout data. Please try again.' })
+    }
     // this.getTheBests()
   }
 
-  getAllData = () => {
-    fetchAllData()
-    .then(allData => this.setState({ allData }))
-    .then(isLoading => this.setState({ isLoading: false }))
-    .catch(error => this.setState({error: 'Unable to get workout data. Please try again.'}))
-  }
+
+
 
   // getTheBests = () => {
   //   let twenty = this.calculateMinutes(20)
