@@ -6,6 +6,7 @@ export class GraphDisplay extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      clickedIndex: '',
       chartData: {
         labels: this.generateTimeArray(),
         datasets: [
@@ -29,6 +30,13 @@ export class GraphDisplay extends Component {
     return labels
   }
 
+  clickHandler = (element) => {
+    if (element.length !== 0) {
+    const index = element[0]._index
+    this.setState({clickedIndex: index}) 
+    }
+  } 
+  
 
   generatePowerArray = () => {
     let samples = this.props.workoutData
@@ -45,24 +53,20 @@ export class GraphDisplay extends Component {
         <h2>Power Output Over Time (seconds)</h2>
         <article className='graph'>
         <Line
-          options={{
-            'onClick' : function (e, item) {
-              console.log(item[0]._index)
-              console.log(e);
-              console.log(item)
-            },
+             getElementAtEvent={element => this.clickHandler(element)}
+             options={{
             responsive: true,
             scales: {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Power Output'
+                  labelString: 'Power Output',
                 }
               }],
               xAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Time (seconds)'
+                  labelString: 'Time (seconds)',
                 }
               }],
             }
