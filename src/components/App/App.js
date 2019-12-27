@@ -90,7 +90,7 @@ export class App extends Component {
         </header>
         {this.state.cleanedData.length > 1 && <BestDisplay topOne={this.state.topOne} topFive={this.state.topFive} topTen={this.state.topTen} topFifteen={this.state.topFifteen} topTwenty={this.state.topTwenty}/>}
         {this.state.cleanedData.length > 1 && <GraphDisplay workoutData={this.state.cleanedData} />}
-      {/* <MapDisplay workoutData={workoutData}/> */}
+        {this.state.cleanedData.length > 1 && <MapDisplay workoutData={this.state.cleanedData}/>}
     </div>
   );
   }

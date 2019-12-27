@@ -20,12 +20,12 @@ export class MapDisplay extends Component {
   }
 
   generatePolylines = () => {
-    let samples = this.props.workoutData.samples
+    let samples = this.props.workoutData
     let paths = samples.reduce((endValue, sample) => {
-      if (sample.values.positionLat !== undefined) {
+      if (sample.positionLat !== undefined || sample.positionLong !== undefined) {
         let object = {lat: '', lng: ''}
-        object.lat = sample.values.positionLat
-        object.lng = sample.values.positionLong
+        object.lat = sample.positionLat
+        object.lng = sample.positionLong
         endValue.push(object)
       return endValue
       } else {

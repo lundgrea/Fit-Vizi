@@ -14,13 +14,6 @@ export const cleanWorkoutResults = (workouts) => {
         positionLat: workout.values.positionLat,
         positionLong: workout.values.positionLong,
       }
-    } if (workout.values.positionLat || workout.values.positionLong) {
-      return {
-        millisecondOffset: workout.millisecondOffset,
-        power: workout.values.power,
-        positionLat: null,
-        positionLong: null,
-      }
     } else {
       return {
         millisecondOffset: workout.millisecondOffset,

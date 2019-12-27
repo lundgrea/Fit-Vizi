@@ -21,25 +21,22 @@ export class GraphDisplay extends Component {
 
   generateTimeArray = () => {
     let samples = this.props.workoutData
-    console.log(samples)
-
-    // let labels = samples.reduce((endValue, sample) => {
-    //   let second = sample.millisecondOffset / 1000
-    //   endValue.push(second)
-    //   return endValue
-    // }, [])
-    // return labels
+    let labels = samples.reduce((endValue, sample) => {
+      let second = sample.millisecondOffset / 1000
+      endValue.push(second)
+      return endValue
+    }, [])
+    return labels
   }
 
 
   generatePowerArray = () => {
     let samples = this.props.workoutData
-    console.log(samples)
-    // let data = samples.reduce((endValue, sample) => {
-    //   endValue.push(sample.values.power)
-    //   return endValue
-    // }, [])
-    // return data
+    let data = samples.reduce((endValue, sample) => {
+      endValue.push(sample.power)
+      return endValue
+    }, [])
+    return data
   }
 
   render = () => {
