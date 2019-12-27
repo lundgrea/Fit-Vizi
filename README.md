@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fit Vizi: Fitness Visualizer
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Fit Vizi, a single page web application built in React, is a fitness visualizer that fetches workout data from a backend API built with Express.js and deployed to [Heroku](https://be-fit-vizi.herokuapp.com/). 
 
-### `npm start`
+The visualizer displays:
+  - The 'best' (defined as highest continuous average for the given time period) periods of the workout 
+  - A graph of the workout's power output over time and 
+  - A path map of the latitude and longitude of the workout data using Google Maps API
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies Used:
+* React
+* Fetch API
+* Asynchronous JavaScript
+* Express.js
+* Jest 
+* Enzyme
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Objectives:
+* Display the GPS path on a Map
+* Display the power output over time on a graph, using time as the X axis
+* When user selects a range of time on the graph, highlight the corresponding range on the map
+* Display the 1, 5, 10, 15, and 20 minute "best" efforts
+* Write the most efficient method that finds the "best" 20 minute power effort
+  - "Best" is defined as highest continuous average for the given time period.
+* Implement asychronous testing and Enzyme/Jest UI testing
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone down the UI repository and cd into it.
 
-### `npm run build`
+Install the application's dependencies from within the cloned directory:
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then launch the application within the browser:
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Testing 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The application comes with a testing suite, to view run `npm test` from within the CLI.
 
-### `npm run eject`
+This command will launch the test runner in the interactive watch mode.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Screenshots
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Homepage
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![](https://user-images.githubusercontent.com/38546045/71533868-1f914700-28f3-11ea-8955-430f3a7556ab.png)
 
-## Learn More
+'Best' Display
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![](https://user-images.githubusercontent.com/38546045/71533890-35067100-28f3-11ea-8f76-ad8516c11e4b.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Graph Display
 
-### Code Splitting
+![](https://user-images.githubusercontent.com/38546045/71533899-4485ba00-28f3-11ea-95ee-0e2b58b2c9c0.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Map Display
 
-### Analyzing the Bundle Size
+![](https://user-images.githubusercontent.com/38546045/71533910-56fff380-28f3-11ea-8cb0-cf8c734e39c7.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+## Developer
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[Alyssa Lundgren](https://github.com/lundgrea)
