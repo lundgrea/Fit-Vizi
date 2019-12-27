@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import MapDisplay from '../MapDisplay/MapDisplay';
 import GraphDisplay from '../GraphDisplay/GraphDisplay';
 import BestDisplay from '../BestDisplay/BestDisplay';
-import { fetchAllWorkouts } from '../../apiCalls/apiCalls';
-import { cleanWorkoutResults } from '../../Util/dataCleaner'
+import { fetchAllWorkouts } from '../../Util/apiCalls/apiCalls';
+import { Marker } from 'google-maps-react';
+import { cleanWorkoutResults } from '../../Util/dataCleaner/dataCleaner'
 import './App.css';
 
 
@@ -22,7 +23,8 @@ export class App extends Component {
       topTen: {}, 
       topFifteen: {}, 
       topTwenty: {},
-      selectedItem: {}
+      selectedIndex: '',
+      selectedItem: ''
     }
   }
 
@@ -83,7 +85,13 @@ export class App extends Component {
   }
 
   connectMapAndGraph = (item) => {
-    this.setState({selectedItem: item})
+    this.setState({selectedIndex: item})
+    this.findSelectedItem(item)
+  }
+
+  findSelectedItem = (index) => {
+    let selectedItem = this.state.cleanedData[index]
+    this.setState({ selectedItem })
   }
   
   render() {
@@ -94,7 +102,7 @@ export class App extends Component {
         </header>
         {this.state.cleanedData.length > 1 && <BestDisplay topOne={this.state.topOne} topFive={this.state.topFive} topTen={this.state.topTen} topFifteen={this.state.topFifteen} topTwenty={this.state.topTwenty}/>}
         {this.state.cleanedData.length > 1 && <GraphDisplay connectMapAndGraph={this.connectMapAndGraph} workoutData={this.state.cleanedData} />}
-        {this.state.cleanedData.length > 1 && <MapDisplay workoutData={this.state.cleanedData}/>}
+        {this.state.cleanedData.length > 1 && <MapDisplay selectedItem={this.state.selectedItem} workoutData={this.state.cleanedData}/>}
     </div>
   );
   }

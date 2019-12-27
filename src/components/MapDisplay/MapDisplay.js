@@ -7,6 +7,7 @@ const API_KEY =`${process.env.REACT_APP_API_KEY}`
 
 export class MapDisplay extends Component { 
 
+
   displayPolyline = () => {
     let routes = this.generatePolylines()
     return (
@@ -17,6 +18,23 @@ export class MapDisplay extends Component {
         strokeWeight={5} 
       />
     )
+  }
+
+  generateMarker = (object) => {
+    console.log(object)
+    if (this.props.selectedItem !== '') {
+      return (
+        <Marker 
+          position={{
+            lat: object.positionLat,
+            lng: object.positionLong
+          }}        
+          title="Selected Data"
+          id={1}
+          draggable={true}
+        />
+      )
+    }
   }
 
   generatePolylines = () => {
@@ -46,6 +64,7 @@ export class MapDisplay extends Component {
           style={mapStyles}
           initialCenter={{ lat: 40.01488, lng: -105.131}}
         >
+        {this.generateMarker(this.props.selectedItem)}
         {this.displayPolyline()}
         </Map>
       </div>

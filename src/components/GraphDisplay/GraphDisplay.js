@@ -38,8 +38,6 @@ export class GraphDisplay extends Component {
     }
   } 
   
-
-
   generatePowerArray = () => {
     let samples = this.props.workoutData
     let data = samples.reduce((endValue, sample) => {
