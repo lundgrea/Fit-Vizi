@@ -1,4 +1,4 @@
-import { fetchAllWorkouts } from '../apiCalls/apiCalls'
+import { fetchAllWorkouts } from './apiCalls'
 
 
   describe("fetchAllWorkouts", () => {

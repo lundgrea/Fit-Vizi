@@ -19,6 +19,22 @@ export class MapDisplay extends Component {
     )
   }
 
+  generateMarker = (object) => {
+    if (this.props.selectedItem !== '') {
+      return (
+        <Marker 
+          position={{
+            lat: object.positionLat,
+            lng: object.positionLong
+          }}        
+          title="Selected Data"
+          id={1}
+          draggable={true}
+        />
+      )
+    }
+  }
+
   generatePolylines = () => {
     let samples = this.props.workoutData
     let paths = samples.reduce((endValue, sample) => {
@@ -35,7 +51,6 @@ export class MapDisplay extends Component {
     return paths
   }
 
-
   render() {
     return (
       <div className='map'>
@@ -46,6 +61,7 @@ export class MapDisplay extends Component {
           style={mapStyles}
           initialCenter={{ lat: 40.01488, lng: -105.131}}
         >
+        {this.generateMarker(this.props.selectedItem)}
         {this.displayPolyline()}
         </Map>
       </div>

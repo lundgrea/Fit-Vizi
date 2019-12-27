@@ -26,6 +26,18 @@ exports[`MapDisplay should match the snapshot with all data passed in correctly 
     visible={true}
     zoom={12}
   >
+    <Marker
+      draggable={true}
+      id={1}
+      name="Marker"
+      position={
+        Object {
+          "lat": undefined,
+          "lng": undefined,
+        }
+      }
+      title="Selected Data"
+    />
     <Polyline
       name="Polyline"
       path={

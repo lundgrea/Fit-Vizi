@@ -20,9 +20,9 @@ exports[`GraphDisplay should match the snapshot with all data passed in correctl
           "labels": Array [],
         }
       }
+      getElementAtEvent={[Function]}
       options={
         Object {
-          "onClick": [Function],
           "responsive": true,
           "scales": Object {
             "xAxes": Array [
