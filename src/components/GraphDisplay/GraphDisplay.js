@@ -34,9 +34,11 @@ export class GraphDisplay extends Component {
     if (element.length !== 0) {
     const index = element[0]._index
     this.setState({clickedIndex: index}) 
+    this.props.connectMapAndGraph(index)
     }
   } 
   
+
 
   generatePowerArray = () => {
     let samples = this.props.workoutData
