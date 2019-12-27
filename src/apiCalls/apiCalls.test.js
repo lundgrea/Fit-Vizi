@@ -58,13 +58,13 @@ import { fetchAllWorkouts } from '../apiCalls/apiCalls'
           ok: false
         });
       });
-      expect(fetchAllWorkouts()).rejects.toEqual(Error("Failed to get workouts"));
+      expect(fetchAllWorkouts()).rejects.toEqual(Error("Failed to get data"));
     });
   
     it("should return an error if the promise rejects (SAD)", () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.reject(Error("Failed to get workouts"));
       });
-      expect(fetchAllWorkouts()).rejects.toEqual(Error("Failed to get workouts"));
+      expect(fetchAllWorkouts()).rejects.toEqual(Error("Failed to get data"));
     });
   });
