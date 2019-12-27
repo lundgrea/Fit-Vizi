@@ -1,27 +1,30 @@
-# Fit Vizi: A Fitness Visualizer
+# Fit Vizi: Fitness Visualizer
 
 ## Description
 
 Fit Vizi, a single page web application built in React, is a fitness visualizer that fetches workout data from a backend API built with Express.js and deployed to [Heroku](https://be-fit-vizi.herokuapp.com/). 
 
 The visualizer displays:
-  - Map of the latitude and longitude of the workout data using Google Maps API
-  - Graph of the workout's power output over time
   - The 'best' (defined as highest continuous average for the given time period) periods of the workout 
+  - A graph of the workout's power output over time and 
+  - A path map of the latitude and longitude of the workout data using Google Maps API
 
 ## Technologies Used:
 * React
+* Fetch API
+* Asynchronous JavaScript
 * Express.js
 * Jest 
 * Enzyme
 
 ## Objectives:
-* Display the gps path on a Map
+* Display the GPS path on a Map
 * Display the power output over time on a graph, using time as the X axis
 * When user selects a range of time on the graph, highlight the corresponding range on the map
 * Display the 1, 5, 10, 15, and 20 minute "best" efforts
 * Write the most efficient method that finds the "best" 20 minute power effort
   - "Best" is defined as highest continuous average for the given time period.
+* Implement asychronous testing and Enzyme/Jest UI testing
 
 ## Installation
 
