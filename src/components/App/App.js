@@ -49,7 +49,6 @@ export class App extends Component {
     }
   }
 
-
   calculateMinutes = (minutes) => {
     let secondsLength = minutes * 60
     return secondsLength

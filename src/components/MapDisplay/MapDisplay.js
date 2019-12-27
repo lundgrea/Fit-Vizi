@@ -7,7 +7,6 @@ const API_KEY =`${process.env.REACT_APP_API_KEY}`
 
 export class MapDisplay extends Component { 
 
-
   displayPolyline = () => {
     let routes = this.generatePolylines()
     return (
@@ -51,7 +50,6 @@ export class MapDisplay extends Component {
     }, [{lat: 40.01488, lng: -105.131}])
     return paths
   }
-
 
   render() {
     return (

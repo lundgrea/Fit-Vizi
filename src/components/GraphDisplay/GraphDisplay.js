@@ -19,7 +19,6 @@ export class GraphDisplay extends Component {
     }
   }
 
-
   generateTimeArray = () => {
     let samples = this.props.workoutData
     let labels = samples.reduce((endValue, sample) => {
@@ -77,7 +76,6 @@ export class GraphDisplay extends Component {
       </section>
     )
   }
-
 } 
 
 export default GraphDisplay
