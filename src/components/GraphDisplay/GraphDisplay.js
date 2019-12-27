@@ -20,7 +20,7 @@ export class GraphDisplay extends Component {
 
 
   generateTimeArray = () => {
-    let samples = this.props.workoutData.samples
+    let samples = this.props.workoutData
     let labels = samples.reduce((endValue, sample) => {
       let second = sample.millisecondOffset / 1000
       endValue.push(second)
@@ -31,9 +31,9 @@ export class GraphDisplay extends Component {
 
 
   generatePowerArray = () => {
-    let samples = this.props.workoutData.samples
+    let samples = this.props.workoutData
     let data = samples.reduce((endValue, sample) => {
-      endValue.push(sample.values.power)
+      endValue.push(sample.power)
       return endValue
     }, [])
     return data

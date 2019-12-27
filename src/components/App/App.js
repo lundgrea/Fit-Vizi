@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import MapDisplay from '../MapDisplay/MapDisplay';
 import GraphDisplay from '../GraphDisplay/GraphDisplay';
 import BestDisplay from '../BestDisplay/BestDisplay';
-import { workoutData } from '../../workout-data';
+import { fetchAllWorkouts } from '../../apiCalls/apiCalls';
+import { cleanWorkoutResults } from '../../Util/dataCleaner'
 import './App.css';
 
 
@@ -11,6 +12,11 @@ export class App extends Component {
   constructor() {
     super()
     this.state = {
+      isLoading: true,
+      networkMessage: '',
+      error: '',
+      allData: {},
+      cleanedData: [],
       topOne: {},
       topFive: {},
       topTen: {}, 
@@ -19,34 +25,41 @@ export class App extends Component {
     }
   }
 
-  componentDidMount = () => {
-    this.getTheBests()
+  componentDidMount = async () => {
+    try {
+      const data = await fetchAllWorkouts()
+      this.setState({ allData: data })
+      this.setState({ isLoading: false })
+      const cleanedData = await cleanWorkoutResults(data)
+      this.setState({ cleanedData} )
+      const topTwenty = await this.determineBest(20)
+      this.setState({ topTwenty })
+      const topFifteen = await this.determineBest(15)
+      this.setState({ topFifteen })
+      const topTen = await this.determineBest(10)
+      this.setState({ topTen })
+      const topFive = await this.determineBest(5)
+      this.setState({ topFive })
+      const topOne = await this.determineBest(1)
+      this.setState({ topOne})
+    } catch {
+      this.setState({ error: 'Unable to get YOUR workout data. Please try again.' })
+    }
   }
 
-  getTheBests = () => {
-    let twenty = this.calculateMinutes(20)
-    let topTwenty = this.determineBest(twenty)
-    let fifteen = this.calculateMinutes(15)
-    let topFifteen = this.determineBest(fifteen)
-    let ten = this.calculateMinutes(10)
-    let topTen = this.determineBest(ten)
-    let five = this.calculateMinutes(5)
-    let topFive = this.determineBest(five)
-    let one = this.calculateMinutes(1)
-    let topOne = this.determineBest(one)
-    this.setState({ topOne: topOne})
-    this.setState({ topFive : topFive })
-    this.setState({ topTen : topTen })
-    this.setState({ topFifteen : topFifteen })
-    this.setState({ topTwenty : topTwenty })
+
+  calculateMinutes = (minutes) => {
+    let secondsLength = minutes * 60
+    return secondsLength
   }
 
-  determineBest = (duration) => {
+  determineBest = async (duration) => {
+    let seconds = this.calculateMinutes(duration)
     let currentMax = 0;
-    let samples = workoutData.samples;
+    let samples = await this.state.cleanedData;
     for (var i = 0; i < duration; i++) {
-      if (samples[i].values.power) {
-        currentMax += samples[i].values.power
+      if (samples[i].power) {
+        currentMax += samples[i].power
       }
     }
 
@@ -54,34 +67,30 @@ export class App extends Component {
 
     let actualMax = currentMax
 
-    for (var j = duration; j < samples.length; j++) {
-      if (samples[j].values.power && samples[j - duration].values.power) {
-        currentMax += (samples[j].values.power - samples[j - duration].values.power)
-        if (samples[j].values.power > samples[j-duration].values.power) {
-          startIndex = (j - duration + 1)
+    for (var j = seconds; j < samples.length; j++) {
+      if (samples[j].power && samples[j - seconds].power) {
+        currentMax += (samples[j].power - samples[j - seconds].power)
+        if (samples[j].power > samples[j-seconds].power) {
+          startIndex = (j - seconds + 1)
         }
          actualMax = Math.max(currentMax, actualMax)
       } 
     }
-    let average = actualMax / duration
+    let average = actualMax / seconds
     let shortenedAverage = average.toFixed(2)
   return {startIndex: startIndex, averagePower: shortenedAverage}
   }
 
-  calculateMinutes = (minutes) => {
-    let secondsLength = minutes * 60
-    return secondsLength
-  }
-
+  
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1>Fit Vizi</h1>
         </header>
-        <BestDisplay data={this.state}/>
-      <GraphDisplay workoutData={workoutData} />
-      <MapDisplay workoutData={workoutData}/>
+        {this.state.cleanedData.length > 1 && <BestDisplay topOne={this.state.topOne} topFive={this.state.topFive} topTen={this.state.topTen} topFifteen={this.state.topFifteen} topTwenty={this.state.topTwenty}/>}
+        {this.state.cleanedData.length > 1 && <GraphDisplay workoutData={this.state.cleanedData} />}
+        {this.state.cleanedData.length > 1 && <MapDisplay workoutData={this.state.cleanedData}/>}
     </div>
   );
   }
