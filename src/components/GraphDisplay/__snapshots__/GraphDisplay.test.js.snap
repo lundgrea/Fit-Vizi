@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GraphDisplay should match the snapshot with all data passed in correctly 1`] = `
+<section>
+  <h2>
+    Power Output Over Time (seconds)
+  </h2>
+  <article
+    className="graph"
+  >
+    <Line
+      data={
+        Object {
+          "datasets": Array [
+            Object {
+              "data": Array [],
+              "label": "Power Output",
+            },
+          ],
+          "labels": Array [],
+        }
+      }
+      options={
+        Object {
+          "onClick": [Function],
+          "responsive": true,
+          "scales": Object {
+            "xAxes": Array [
+              Object {
+                "scaleLabel": Object {
+                  "display": true,
+                  "labelString": "Time (seconds)",
+                },
+              },
+            ],
+            "yAxes": Array [
+              Object {
+                "scaleLabel": Object {
+                  "display": true,
+                  "labelString": "Power Output",
+                },
+              },
+            ],
+          },
+        }
+      }
+    />
+  </article>
+</section>
+`;
