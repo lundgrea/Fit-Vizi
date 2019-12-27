@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MapDisplay should match the snapshot with all data passed in correctly 1`] = `
+<div
+  className="map"
+>
+  <h2>
+    Map of Travel Route
+  </h2>
+  <Map
+    center={Object {}}
+    centerAroundCurrentLocation={false}
+    containerStyle={Object {}}
+    initialCenter={
+      Object {
+        "lat": 40.01488,
+        "lng": -105.131,
+      }
+    }
+    style={
+      Object {
+        "height": "75%",
+        "width": "75%",
+      }
+    }
+    visible={true}
+    zoom={12}
+  >
+    <Polyline
+      name="Polyline"
+      path={
+        Array [
+          Object {
+            "lat": 40.01488,
+            "lng": -105.131,
+          },
+        ]
+      }
+      strokeColor="#DB3A34"
+      strokeOpacity={0.8}
+      strokeWeight={5}
+    />
+  </Map>
+</div>
+`;
