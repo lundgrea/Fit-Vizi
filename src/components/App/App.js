@@ -3,8 +3,7 @@ import MapDisplay from '../MapDisplay/MapDisplay';
 import GraphDisplay from '../GraphDisplay/GraphDisplay';
 import BestDisplay from '../BestDisplay/BestDisplay';
 import { fetchAllWorkouts } from '../../Util/apiCalls/apiCalls';
-import { Marker } from 'google-maps-react';
-import { cleanWorkoutResults } from '../../Util/dataCleaner/dataCleaner'
+import { cleanWorkoutResults } from '../../Util/dataCleaner/dataCleaner';
 import './App.css';
 
 

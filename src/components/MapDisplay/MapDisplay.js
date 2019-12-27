@@ -21,7 +21,6 @@ export class MapDisplay extends Component {
   }
 
   generateMarker = (object) => {
-    console.log(object)
     if (this.props.selectedItem !== '') {
       return (
         <Marker 
