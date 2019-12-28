@@ -51,19 +51,19 @@ This command will launch the test runner in the interactive watch mode.
 
 Homepage
 
-![](https://user-images.githubusercontent.com/38546045/71533868-1f914700-28f3-11ea-8955-430f3a7556ab.png)
+![](Images/App.png)
 
 'Best' Display
 
-![](https://user-images.githubusercontent.com/38546045/71533890-35067100-28f3-11ea-8f76-ad8516c11e4b.png)
+![](Images/BestDisplay.png)
 
 Graph Display
 
-![](https://user-images.githubusercontent.com/38546045/71533899-4485ba00-28f3-11ea-95ee-0e2b58b2c9c0.png)
+![](Images/GraphDisplay.png)
 
 Map Display
 
-![](https://user-images.githubusercontent.com/38546045/71533910-56fff380-28f3-11ea-8cb0-cf8c734e39c7.png)
+![](Images/MapDisplay.png)
 
 
 ## Developer
