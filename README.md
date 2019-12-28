@@ -51,19 +51,19 @@ This command will launch the test runner in the interactive watch mode.
 
 Homepage
 
-![](Images/App.png)
+![](src/Images/App.png)
 
 'Best' Display
 
-![](Images/BestDisplay.png)
+![](src/Images/BestDisplay.png)
 
 Graph Display
 
-![](Images/GraphDisplay.png)
+![](src/Images/GraphDisplay.png)
 
 Map Display
 
-![](Images/MapDisplay.png)
+![](src/Images/MapDisplay.png)
 
 
 ## Developer
